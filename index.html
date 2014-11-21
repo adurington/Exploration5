@@ -24,8 +24,8 @@
 				draw();
 				collision();
 				timer += 1;
-				if(timer % 500 == 0){
-					init_enemy();
+				if(timer % 100 == 0){
+					en_arr.push(Enemy({}));
 				}
 			}, 1000/FPS);
 			
@@ -49,16 +49,18 @@
 			
 				 player.x = player.x.clamp(0, CANVAS_WIDTH - player.width);
 				 player.y = player.y.clamp(0, CANVAS_HEIGHT - player.height);
+				 
 			}
 			
 			function draw() {
 				canvas.clearRect(0,0, CANVAS_WIDTH, CANVAS_HEIGHT);
 				canvas.fillStyle = "#000"
 				canvas.fillText(count, 25, 25);
-				canvas.fillText(enemy_count, 50, 50);
 				player.draw();
 				coin.draw();
-				enemy.draw();
+				en_arr.forEach(function(enemy) {
+					enemy.draw();
+				});
 			}
 			
 			var player = {
@@ -85,32 +87,24 @@
 				}
 
 			};
-			
-			var enemy = {
-				color: "#F00",
-				x: Math.floor((Math.random() * CANVAS_WIDTH) + 1),
-				y: Math.floor((Math.random() * CANVAS_HEIGHT) + 1),
-				width: 10,
-				height: 10,
-				draw: function(){
+			var en_arr = [];
+			function Enemy(I) {
+				I.color = "#F00";
+				I.width = 10;
+				I.height = 10;
+				I.x = Math.floor((Math.random() * CANVAS_WIDTH) + 1);
+				I.y = Math.floor((Math.random() * CANVAS_HEIGHT) + 1);
+				I.draw = function(){
 					canvas.fillStyle = this.color;
 					canvas.fillRect(this.x, this.y, this.width, this.height);
-				}
-
-			};
+				};
+				return I;
+			}
 			
-		var en_arr = [];
 		
 		
-		function init_enemy(){
-			var temp;
-			enemy_count += 1;
-			temp = new enemy();
-			
-			en_arr[enemy_count] = temp;
-			enemy_count += 1;
-			
-		}
+		
+		
 		function collides(a,b){
 			return  a.x < b.x + b.width &&
 					a.x + a.width > b.x &&
