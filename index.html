@@ -24,7 +24,7 @@
 				draw();
 				collision();
 				timer += 1;
-				if(timer % 100 == 0){
+				if(timer % 500 == 0){
 					en_arr.push(Enemy({}));
 				}
 			}, 1000/FPS);
@@ -49,6 +49,12 @@
 			
 				 player.x = player.x.clamp(0, CANVAS_WIDTH - player.width);
 				 player.y = player.y.clamp(0, CANVAS_HEIGHT - player.height);
+				 bul_ar.forEach(function(bullet){
+					bullet.update();
+				 });
+				 bul_ar.filter(function(bullet) {
+					return bullet.active;
+				 });
 				 
 			}
 			
@@ -60,6 +66,9 @@
 				coin.draw();
 				en_arr.forEach(function(enemy) {
 					enemy.draw();
+				});
+				bul_ar.forEach(function(bullet) {
+					bullet.draw();
 				});
 			}
 			
