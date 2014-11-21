@@ -24,8 +24,8 @@
 				draw();
 				collision();
 				timer += 1;
-				if(timer % 1000 == 0){
-					enemy_count++;
+				if(timer % 500 == 0){
+					init_enemy();
 				}
 			}, 1000/FPS);
 			
@@ -106,9 +106,9 @@
 			var temp;
 			enemy_count += 1;
 			temp = new enemy();
-			temp.init(Math.floor((Math.random() * CANVAS_HEIGHT) + 1), Math.floor((Math.random() * CANVAS_WIDTH) + 1), enemy.width, enemy.height);
-			en_arr[enemy_count] = temp;
 			
+			en_arr[enemy_count] = temp;
+			enemy_count += 1;
 			
 		}
 		function collides(a,b){
@@ -123,9 +123,9 @@
 				coin.x = Math.floor((Math.random() * CANVAS_WIDTH) + 1);
 				coin.y = Math.floor((Math.random() * CANVAS_HEIGHT) + 1);
 				count += 1;
-				if(count % 5 == 0){
-					player.width += 2;
-					player.height += 2;
+				if((count % 5) == 0){
+					player.width += 1;
+					player.height += 1;
 				}
 			}
 		}
