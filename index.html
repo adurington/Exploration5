@@ -10,8 +10,9 @@
   <body>
     <h1>Game Exploration</h1>
 	    <script type='text/javascript'>
-			var CANVAS_WIDTH = 480;
-			var CANVAS_HEIGHT = 480;
+			var CANVAS_WIDTH = 400;
+			var CANVAS_HEIGHT = 400;
+			var MAX_ENEMIES = 20
 
 			var canvasElement = $("<canvas width='" + CANVAS_WIDTH + "' height='" + CANVAS_HEIGHT + "'></canvas>");
 			var canvas = canvasElement.get(0).getContext("2d");
@@ -86,7 +87,11 @@
 					canvas.fillRect(this.x, this.y, this.width, this.height);
 				}
 			};
+		var en_arr[MAX_ENEMIES];
+		function init_enemy(){
 			
+		
+		}
 		function collides(a,b){
 			return  a.x < b.x + b.width &&
 					a.x + a.width > b.x &&
