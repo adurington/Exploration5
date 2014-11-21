@@ -17,16 +17,23 @@
 			var canvasElement = $("<canvas width='" + CANVAS_WIDTH + "' height='" + CANVAS_HEIGHT + "'></canvas>");
 			var canvas = canvasElement.get(0).getContext("2d");
 			canvasElement.appendTo('body');
-			
+			var timer = 0;
 			var FPS = 30;
 			setInterval(function() {
 				update();
 				draw();
 				collision();
+				timer += 1;
+				if(timer % 1000 == 0){
+					enemy_count++;
+				}
 			}, 1000/FPS);
 			
+			var count = 0;	
+			var enemy_count = 0;
 			
 			function update(){
+				
 				if(keydown.left){
 					player.x -= 4;
 				}
@@ -43,11 +50,12 @@
 				 player.x = player.x.clamp(0, CANVAS_WIDTH - player.width);
 				 player.y = player.y.clamp(0, CANVAS_HEIGHT - player.height);
 			}
-			var count = 0;	
+			
 			function draw() {
 				canvas.clearRect(0,0, CANVAS_WIDTH, CANVAS_HEIGHT);
 				canvas.fillStyle = "#000"
 				canvas.fillText(count, 25, 25);
+				canvas.fillText(enemy_count, 50, 50);
 				player.draw();
 				coin.draw();
 				enemy.draw();
@@ -92,16 +100,16 @@
 			};
 			
 		var en_arr = [];
-		var enemy_count = 0;
+		
 		
 		function init_enemy(){
 			var temp;
-			if(count % 5 == 0){
-				temp = new enemy();
-				temp.init(Math.floor((Math.random() * CANVAS_HEIGHT) + 1), Math.floor((Math.random() * CANVAS_WIDTH) + 1), enemy.width, enemy.height);
-				en_arr[enemy_count] = temp;
-				enemy_count++;
-			}
+			enemy_count += 1;
+			temp = new enemy();
+			temp.init(Math.floor((Math.random() * CANVAS_HEIGHT) + 1), Math.floor((Math.random() * CANVAS_WIDTH) + 1), enemy.width, enemy.height);
+			en_arr[enemy_count] = temp;
+			
+			
 		}
 		function collides(a,b){
 			return  a.x < b.x + b.width &&
