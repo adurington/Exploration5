@@ -123,6 +123,10 @@
 				coin.x = Math.floor((Math.random() * CANVAS_WIDTH) + 1);
 				coin.y = Math.floor((Math.random() * CANVAS_HEIGHT) + 1);
 				count += 1;
+				if(count % 5 == 0){
+					player.width += 2;
+					player.height += 2;
+				}
 			}
 		}
 		</script>
