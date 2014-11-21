@@ -27,6 +27,9 @@
 				if(timer % 500 == 0){
 					en_arr.push(Enemy({}));
 				}
+				if(timer % 50 == 0){
+						bul_ar.push(Bullet({}));
+				}
 			}, 1000/FPS);
 			
 			var count = 0;	
@@ -113,7 +116,7 @@
 			var bul_ar = [];
 			function Bullet(I) {
 				I.active = true;
-				I.color = "d3d3d3";
+				I.color = "#000000";
 				I.width = 8;
 				I.height = 2;
 				I.x = 0;
