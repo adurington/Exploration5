@@ -122,8 +122,17 @@
 					player.height += 1;
 				}
 			}
+			en_arr.forEach(function(enemy) {
+					if(collides(player, enemy)){
+						count = 0;
+						timer = 0;
+						en_arr = [];
+					}
+			});
+						
 		}
 		</script>
+
 
   </body>
 </html>
