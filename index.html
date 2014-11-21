@@ -101,7 +101,31 @@
 				return I;
 			}
 			
-		
+			var bul_ar = [];
+			function Bullet(I) {
+				I.active = true;
+				I.color = "d3d3d3";
+				I.width = 8;
+				I.height = 2;
+				I.x = 0;
+				I.y = Math.floor((Math.random() * CANVAS_HEIGHT) + 1);
+				
+				I.inbounds = function(){
+					return I.x >= 0 && I.x <= CANVAS_WIDTH;
+				
+				};
+				I.draw = function(){
+					canvas.fillStyle = this.color;
+					canvas.fillRect(this.x, this.y, this.width, this.height);
+				};
+				
+				I.update = function() {
+					I.x += 2;
+					I.active = I.active && I.inbounds();
+				};
+				return I;
+			}
+			
 		
 		
 		
