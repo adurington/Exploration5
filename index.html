@@ -75,6 +75,17 @@
 				}
 
 			};
+			var enemy = {
+				color: "#A00",
+				x: Math.floor((Math.random() * CANVAS_WIDTH) + 1),
+				y: Math.floor((Math.random() * CANVAS_HEIGHT) + 1),
+				width: 10,
+				width:10,
+				draw: function(){
+					canvas.fillStyle = this.color;
+					canvas.fillRect(this.x, this.y, this.width, this.height);
+				}
+			};
 			
 		function collides(a,b){
 			return  a.x < b.x + b.width &&
