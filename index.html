@@ -91,13 +91,16 @@
 
 			};
 			
-		var array = [];
+		var en_arr = [];
 		var enemy_count = 0;
 		
 		function init_enemy(){
-			var num = Math.floor(count/5);
-			for(i = 0; i < num; i++){
-			
+			var temp;
+			if(count % 5 == 0){
+				temp = new enemy();
+				temp.init(Math.floor((Math.random() * CANVAS_HEIGHT) + 1), Math.floor((Math.random() * CANVAS_WIDTH) + 1), enemy.width, enemy.height);
+				en_arr[enemy_count] = temp;
+				enemy_count++;
 			}
 		}
 		function collides(a,b){
